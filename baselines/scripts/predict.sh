@@ -10,7 +10,7 @@ else
 fi
 
 # Define output directory
-OUTPUT_DIR_BASE="/large_storage/goodarzilab/userspace/mohsen/VCI-PertBench/state_revisions/debug/"
+OUTPUT_DIR_BASE="/tmp"
 
 # Define test tasks for each fold
 if [ $DATASET_NAME = "replogle" ]; then
@@ -40,6 +40,7 @@ fi
 
 echo "Generating Predictions for $MODEL_NAME on $DATASET_NAME (fold: $FOLD_ID)"
 echo "Output directory: $OUTPUT_DIR"
+echo "Checkpoint: $CKPT"
 
 uv run python -m state_sets_reproduce.train.get_predictions \
     --output_dir ${OUTPUT_DIR} \

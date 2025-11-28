@@ -4,3 +4,4 @@ __pycache__/
 wandb/
 */logs/
 *.csv
+conda_env

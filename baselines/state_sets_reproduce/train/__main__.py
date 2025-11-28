@@ -383,7 +383,7 @@ def train(cfg: DictConfig) -> None:
         ):  # scGPT: Genetic perturbation data
             cfg["model"]["kwargs"][
                 "pert_emb_path"
-            ] = f"/large_storage/goodarzilab/userspace/mohsen/VCI-models/scGPT/scGPT_human/gene_embeddings.h5"
+            ] = f"/network/scratch/z/zhangya/scGPT/gene_embeddings_scgpt.h5"
         elif (
             cfg["model"]["kwargs"]["pert_emb"] == "tahoe_rdkit"
         ):  # Tahoe: Chemical perturbation data
@@ -406,6 +406,8 @@ def train(cfg: DictConfig) -> None:
         ):  # Use the training data as the gene embeddings
             # 1. Perform PCA on the training data
             raise NotImplementedError("PCA on training data is not implemented yet")
+        elif cfg["model"]["kwargs"]["gene_emb"] == "identity":
+            cfg["model"]["kwargs"]["gene_emb_path"] = "identity"
         elif (
             cfg["model"]["kwargs"]["gene_emb"] == "gears_norman"
         ):  # Extract GEARS gene embeddings from the trained GEARS on Norman2019 dataset
@@ -417,7 +419,7 @@ def train(cfg: DictConfig) -> None:
         ):  # Extract scGPT's vocabulary embeddings
             cfg["model"]["kwargs"][
                 "gene_emb_path"
-            ] = f"/large_storage/goodarzilab/userspace/mohsen/VCI-models/scGPT/scGPT_human/gene_embeddings.h5"
+            ] = f"/network/scratch/z/zhangya/scGPT/gene_embeddings_scgpt.h5"
         else:
             raise ValueError(f"Unknown gene embedding: {cfg['model']['gene_emb']}")
 

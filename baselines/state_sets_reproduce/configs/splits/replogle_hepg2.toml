@@ -1,5 +1,5 @@
 [datasets]
-replogle = "/network/scratch/z/zhangya/shared_resource_perturbflow/state-reproduce/replogle"
+replogle = "/tmp/"
 
 [training]
 replogle = "train"

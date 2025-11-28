@@ -46,7 +46,11 @@ class LowRankLinearModel(PerturbationModel):
         control_pert: str,
         **kwargs,
     ):
-        if os.path.exists(gene_emb_path):
+        if gene_emb_path == "identity":
+            emb_gene_names = list(gene_names)
+            gene_emb = np.eye(len(gene_names), dtype=np.float32)
+            print(f"Using identity gene embeddings with {len(emb_gene_names)} genes")
+        elif os.path.exists(gene_emb_path):
             with h5py.File(gene_emb_path, "r") as f:
                 emb_gene_names = [
                     n.decode("utf-8") for n in f["gene_names"][:]

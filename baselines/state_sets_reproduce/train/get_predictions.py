@@ -15,6 +15,7 @@ import pandas as pd
 import lightning.pytorch as pl
 import torch
 import wandb
+import ipdb
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -50,8 +51,8 @@ def parse_args():
         "--checkpoint",
         "-c",
         type=str,
-        default="last.ckpt",
-        help="Checkpoint filename. Default is 'last.ckpt'. Relative to the output directory.",
+        default="final.ckpt",
+        help="Checkpoint filename. Default is 'final.ckpt'. Relative to the output directory.",
     )
 
     return parser.parse_args()
@@ -375,12 +376,19 @@ def main():
                 all_pert_names.append(batch_preds["pert_name"])
 
             # Handle ctrl_cell_barcode
+            if batch_preds.get("ctrl_cell_barcode", None) is not None and isinstance(
+                batch_preds["ctrl_cell_barcode"], list
+            ):
+                all_ctrl_cell_barcodes.extend(batch_preds["ctrl_cell_barcode"])
+            # else don't do anything and keep all_ctrl_cell_barcodes empty 
+            '''
             if batch_preds["ctrl_cell_barcode"] is not None and isinstance(
                 batch_preds["ctrl_cell_barcode"], list
             ):
                 all_ctrl_cell_barcodes.extend(batch_preds["ctrl_cell_barcode"])
             else:
                 all_ctrl_cell_barcodes.append(batch_preds["ctrl_cell_barcode"])
+            '''
 
             # Handle celltype_name
             if isinstance(batch_preds["cell_type"], list):

@@ -5,18 +5,18 @@ DATASET_NAME=$2
 FOLD_ID=$3
 
 # Define output directory
-OUTPUT_DIR_BASE="/large_storage/goodarzilab/userspace/mohsen/VCI-PertBench/state_revisions/debug_v3/"
+OUTPUT_DIR_BASE="/tmp/"
 
 # Define test tasks for each fold
 if [ "$DATASET_NAME" = "replogle" ]; then
     if [ "$FOLD_ID" = "1" ]; then
-        DATA_TOML_PATH="/large_storage/ctc/userspace/aadduri/revisions/replogle_nogwps_v2/hepg2.toml"
+        DATA_TOML_PATH="/network/scratch/z/zhangya/state-reproduce/baselines/state_sets_reproduce/configs/splits/replogle_hepg2.toml"
     elif [ "$FOLD_ID" = "2" ]; then
-        DATA_TOML_PATH="/large_storage/ctc/userspace/aadduri/revisions/replogle_nogwps_v2/jurkat.toml"
+        DATA_TOML_PATH="/network/scratch/z/zhangya/state-reproduce/baselines/state_sets_reproduce/configs/splits/replogle_jurkat.toml"
     elif [ "$FOLD_ID" = "3" ]; then
-        DATA_TOML_PATH="/large_storage/ctc/userspace/aadduri/revisions/replogle_nogwps_v2/k562.toml"
+        DATA_TOML_PATH="/network/scratch/z/zhangya/state-reproduce/baselines/state_sets_reproduce/configs/splits/replogle_k562.toml"
     elif [ "$FOLD_ID" = "4" ]; then
-        DATA_TOML_PATH="/large_storage/ctc/userspace/aadduri/revisions/replogle_nogwps_v2/rpe1.toml"
+        DATA_TOML_PATH="/network/scratch/z/zhangya/state-reproduce/baselines/state_sets_reproduce/configs/splits/replogle_rpe1.toml"
     fi
 
     OUTPUT_DIR="${OUTPUT_DIR_BASE}/${MODEL_NAME}_replogle_v2/"
@@ -166,7 +166,7 @@ if [ "$MODEL_NAME" = "lrlm" ]; then
     echo "using perturbation embedding: $PERT_EMB"
 
     echo "Running the following command:"
-    python -m state_sets_reproduce.train \
+    /network/scratch/z/zhangya/state-reproduce/baselines/conda_env/bin/python -m state_sets_reproduce.train \
         data.kwargs.toml_config_path=$DATA_TOML_PATH \
         data.kwargs.embed_key=X_hvg \
         data.kwargs.basal_mapping_strategy=random \
@@ -183,7 +183,7 @@ if [ "$MODEL_NAME" = "lrlm" ]; then
         training.val_freq=5000 \
         training.test_freq=9000 \
         training.batch_size=${BATCH_SIZE} \
-        wandb=mohsen \
+        wandb=yashizhang \
         wandb.tags="${WANDB_TAGS}" \
         model=${MODEL_NAME} \
         training=${TRAINING_NAME} \
@@ -191,7 +191,7 @@ if [ "$MODEL_NAME" = "lrlm" ]; then
         name="${FOLD_NAME}"
 else
     echo "Running the following command:"
-    python -m state_sets_reproduce.train \
+    /network/scratch/z/zhangya/state-reproduce/baselines/conda_env/bin/python -m state_sets_reproduce.train \
         data.kwargs.toml_config_path=$DATA_TOML_PATH \
         data.kwargs.embed_key=X_hvg \
         data.kwargs.basal_mapping_strategy=random \
@@ -205,7 +205,7 @@ else
         training.val_freq=5000 \
         training.test_freq=9000 \
         training.batch_size=128 \
-        wandb=mohsen \
+        wandb=yashizhang \
         wandb.tags="${WANDB_TAGS}" \
         model=${MODEL_NAME} \
         training=${TRAINING_NAME} \
