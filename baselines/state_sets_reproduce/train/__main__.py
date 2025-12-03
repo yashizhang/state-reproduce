@@ -223,7 +223,7 @@ def get_loggers(
         wandb_logger = WandbLogger(
             name=name,
             project=wandb_project,
-            entity=wandb_entity,
+            entity='yashi-zhang',
             dir=local_wandb_dir,
             tags=cfg["wandb"].get("tags", []) if cfg else [],
         )

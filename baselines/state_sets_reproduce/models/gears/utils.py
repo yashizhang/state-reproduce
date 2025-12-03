@@ -43,6 +43,7 @@ class GeneSimNetwork:
         """
 
         self.edge_list = edge_list
+
         self.G = nx.from_pandas_edgelist(
             self.edge_list,
             source="source",
@@ -51,11 +52,13 @@ class GeneSimNetwork:
             create_using=nx.DiGraph(),
         )
         self.gene_list = gene_list
+
         for n in self.gene_list:
             if n not in self.G.nodes():
                 self.G.add_node(n)
 
         edge_index_ = [(node_map[e[0]], node_map[e[1]]) for e in self.G.edges]
+
         self.edge_index = torch.tensor(edge_index_, dtype=torch.long).T
         # self.edge_weight = torch.Tensor(self.edge_list['importance'].values)
 
