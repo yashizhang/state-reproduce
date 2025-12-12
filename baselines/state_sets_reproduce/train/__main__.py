@@ -433,7 +433,7 @@ def train(cfg: DictConfig) -> None:
     # if cfg["model"]["name"].lower() == "gears":
     if cfg["data"]["kwargs"]["pert_col"].lower() == "drugname_drugconc":
         logger.info("Using tahoe gene names for the baselines ")
-        path = "/large_storage/ctc/userspace/mohsen/state_revisions/gears_prep/tahoe_gene_names.txt"
+        path = "/network/scratch/z/zhangya/shared_resource_perturbflow/state-reproduce/tahoe/tahoe_hvg_names.txt"
         with open(path, "r") as f:
             gene_names = f.readlines()
         gene_names = [gene.strip() for gene in gene_names]
@@ -441,7 +441,7 @@ def train(cfg: DictConfig) -> None:
         dm_var_dims["gene_dim"] = len(gene_names)
     elif cfg["data"]["kwargs"]["pert_col"].lower() == "cytokine":
         logger.info("Using parse gene names for the baselines ")
-        path = "/large_storage/ctc/userspace/mohsen/state_revisions/gears_prep/parse_hvg_names.txt"
+        path = "/network/scratch/z/zhangya/shared_resource_perturbflow/state-reproduce/pbmc/parse_hvg_names.txt"
         with open(path, "r") as f:
             gene_names = f.readlines()
         gene_names = [gene.strip() for gene in gene_names]

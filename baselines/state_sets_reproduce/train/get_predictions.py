@@ -339,6 +339,8 @@ def main():
     all_gem_groups = []
     all_ctrl_cell_barcodes = []
 
+    import ipdb; ipdb.set_trace()
+
     with torch.no_grad():
         for batch_idx, batch in enumerate(
             tqdm(test_loader, desc="Predicting", unit="batch")
