@@ -138,9 +138,9 @@ if [ "$MODEL_NAME" = "lrlm" ]; then
     echo "Running the following command:"
     /network/scratch/z/zhangya/state-reproduce/baselines/conda_env/bin/python -m state_sets_reproduce.train \
         data.kwargs.toml_config_path=$DATA_TOML_PATH \
-        data.kwargs.embed_key=X_hvg \
+        data.kwargs.embed_key=null \
         data.kwargs.basal_mapping_strategy=random \
-        data.kwargs.output_space=gene \¡
+        data.kwargs.output_space=gene \
         data.kwargs.num_workers=24 \
         data.kwargs.batch_col=${BATCH_COL} \
         data.kwargs.pert_col=${PERT_COL} \
@@ -163,7 +163,7 @@ else
     echo "Running the following command:"
     /network/scratch/z/zhangya/state-reproduce/baselines/conda_env/bin/python -m state_sets_reproduce.train \
         data.kwargs.toml_config_path=$DATA_TOML_PATH \
-        data.kwargs.embed_key=X_hvg \
+        data.kwargs.embed_key=null \
         data.kwargs.basal_mapping_strategy=random \
         data.kwargs.output_space=gene \
         data.kwargs.num_workers=24 \

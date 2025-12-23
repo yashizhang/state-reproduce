@@ -363,7 +363,7 @@ def train(cfg: DictConfig) -> None:
         logger.info("Using parse coexpression graph for GEARS")
         cfg["model"]["kwargs"][
             "coexpression_graph_path"
-        ] = "/large_storage/ctc/userspace/mohsen/state_revisions/gears_prep/parse_coexpression.csv"
+        ] = "/home/mila/z/zhangya/scratch/shared_resource_perturbflow/state-reproduce/pbmc/coexpression.csv"
     elif (
         cfg["model"]["name"].lower() == "gears"
         and cfg["data"]["kwargs"]["pert_col"].lower() == "drugname_drugconc"
